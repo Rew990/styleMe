@@ -1,0 +1,4 @@
+[
+  { "id": "outfit-1", "name": "Weekend casual", "itemIds": ["item-1", "item-2", "item-5"], "occasion": "Casual", "isFavorite": true, "createdAt": "2026-10-05T12:00:00.000Z" },
+  { "id": "outfit-2", "name": "Office day", "itemIds": ["item-1", "item-3", "item-4", "item-6"], "occasion": "Work", "isFavorite": false, "createdAt": "2026-10-06T12:00:00.000Z" }
+]
