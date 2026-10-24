@@ -1,29 +1,41 @@
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useEffect } from 'react';
-import { initStorage, readJson, seedSampleData } from './src/services/fileStorage';
+import AppNavigator from './src/navigation/AppNavigator';
+import { initStorage, seedSampleData } from './src/services/fileStorage';
 
 export default function App() {
+  const [ready, setReady] = useState(false);
+
+  // Runs once when the app opens: create the data files,
+  // then fill them with sample data (development only).
   useEffect(() => {
-    initStorage()
-      .then(() => (__DEV__ ? seedSampleData() : undefined))
-      .then(() => readJson<unknown[]>('wardrobe'))
-      .then((items) => console.log('Storage ready, wardrobe has', items.length, 'items'))
-      .catch((error) => console.error('Storage setup failed', error));
+    async function prepare() {
+      try {
+        await initStorage();
+        if (__DEV__) await seedSampleData();
+      } catch (e) {
+        console.warn('Storage setup failed', e);
+      } finally {
+        setReady(true);
+      }
+    }
+    prepare();
   }, []);
+
+  // A spinner while the files are being prepared.
+  if (!ready) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <>
+      <AppNavigator />
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
