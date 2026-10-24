@@ -1,0 +1,8 @@
+[
+  { "id": "item-1", "name": "White T-shirt", "category": "Top", "color": "White", "season": "All", "occasion": "Casual", "imageUri": "", "timesWorn": 4, "createdAt": "2026-10-01T09:00:00.000Z" },
+  { "id": "item-2", "name": "Blue jeans", "category": "Bottom", "color": "Blue", "season": "All", "occasion": "Casual", "imageUri": "", "timesWorn": 6, "createdAt": "2026-10-01T09:05:00.000Z" },
+  { "id": "item-3", "name": "Black blazer", "category": "Outerwear", "color": "Black", "season": "Spring-Autumn", "occasion": "Work", "imageUri": "", "timesWorn": 2, "createdAt": "2026-10-02T10:00:00.000Z" },
+  { "id": "item-4", "name": "Grey trousers", "category": "Bottom", "color": "Grey", "season": "Winter", "occasion": "Work", "imageUri": "", "timesWorn": 1, "createdAt": "2026-10-02T10:10:00.000Z" },
+  { "id": "item-5", "name": "White sneakers", "category": "Shoes", "color": "White", "season": "All", "occasion": "Casual", "imageUri": "", "timesWorn": 8, "createdAt": "2026-10-03T08:30:00.000Z" },
+  { "id": "item-6", "name": "Silver watch", "category": "Accessory", "color": "Silver", "season": "All", "occasion": "Formal", "imageUri": "", "timesWorn": 3, "createdAt": "2026-10-03T08:40:00.000Z" }
+]
