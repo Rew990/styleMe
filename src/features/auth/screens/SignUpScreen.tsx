@@ -13,7 +13,6 @@ export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
     <View style={styles.container}>
       <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
       <Text style={styles.title}>Create an account</Text>
-      <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
       <TextField label="Name" value={vm.name} onChangeText={vm.setName} error={vm.errors.name} />
       <TextField
         label="Email"
@@ -52,5 +51,5 @@ const styles = StyleSheet.create({
   formError: {color: colors.error, marginBottom: 12},
   link: {marginTop: 16, alignItems: 'center'},
   linkText: {color: colors.primary, fontSize: fontSizes.body},
-  logo: {width: 120, height: 120, alignSelf: 'center', marginBottom: 16, resizeMode: 'contain'},
+  logo: {width: 700, height: 199, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain'},
 });  
