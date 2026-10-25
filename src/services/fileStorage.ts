@@ -14,6 +14,8 @@ export const DATA_FILES = {
   plans: 'plans.json', // PlannedOutfit[]
   history: 'history.json', // WearRecord[]
   settings: 'settings.json', // UserSettings
+  users: 'users.json', // User[]
+  session: 'session.json', // Session (who is logged in)
 } as const;
 
 export type DataFile = keyof typeof DATA_FILES;
@@ -25,6 +27,8 @@ const DEFAULTS: Record<DataFile, unknown> = {
   plans: [],
   history: [],
   settings: { stylePreferences: [], repeatWindowDays: 7, googleConnected: false },
+  users: [],
+  session: {userId: null},
 };
 
 // Item photos are copied here, named after the item id (e.g. images/item-1.jpg).
