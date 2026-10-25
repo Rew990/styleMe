@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../features/auth/screens/LoginScreen';
 import SignUpScreen from '../features/auth/screens/SignUpScreen';
 import { useSessionViewModel } from '../features/auth/useSessionViewModel';
+import WardrobeStack from '../features/wardrobe/WardrobeStack';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ function MainTabs({ onLogOut }: { onLogOut: () => void }) {
     headerRight: () => <Button title="Log out" onPress={onLogOut} />,
   }}
 >
-      <Tab.Screen name="Wardrobe" component={WardrobeTab} />
+      <Tab.Screen name="Wardrobe" component={WardrobeStack} options={{headerShown: false}} />
       <Tab.Screen name="Outfits" component={OutfitsTab} />
       <Tab.Screen name="Planner" component={PlannerTab} />
     </Tab.Navigator>
