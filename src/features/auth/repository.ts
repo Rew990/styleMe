@@ -36,7 +36,7 @@ export async function logIn(email: string, password: string): Promise<User> {
 
 export async function getCurrentUser(): Promise<User | null> {
   const session = await readJson<Session>('session');
-  if (!session.userId) return null;
+  if (!session?.userId) return null;
   const users = await readJson<User[]>('users');
   return users.find((u) => u.id === session.userId) ?? null;
 }

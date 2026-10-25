@@ -28,7 +28,7 @@ const DEFAULTS: Record<DataFile, unknown> = {
   history: [],
   settings: { stylePreferences: [], repeatWindowDays: 7, googleConnected: false },
   users: [],
-  session: null,
+  session: {userId: null},
 };
 
 // Item photos are copied here, named after the item id (e.g. images/item-1.jpg).
