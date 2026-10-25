@@ -5,7 +5,8 @@ import {colors, fontSizes} from '../../../components/theme';
 import { ClothingItem } from '../../../models/ClothingItem';
 import { useAddItemViewModel } from '../useAddItemViewModel';
 import ChipPicker from '../components/ChipPicker';
-import { CATEGORIES, SEASONS, OCCASIONS } from '../options';
+import { CATEGORIES, SEASONS, OCCASIONS, COLORS } from '../options';
+import ColorGrid from '../components/ColorGrid';
 
 type Props = {onSaved: (item: ClothingItem) => void};
 export default function AddItemScreen({onSaved}: Props) {
@@ -16,12 +17,13 @@ export default function AddItemScreen({onSaved}: Props) {
     <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
     <Text style={styles.title}>Add Item</Text>
     <TextField label="Name" value={vm.name} onChangeText={vm.setName} error={vm.errors.name} />
-    <TextField
-        label="Color"
-        value={vm.color}
-        onChangeText={vm.setColor}
-        error={vm.errors.color}
-      />
+    <Text style={styles.label}>Color</Text>
+    <ColorGrid 
+      options={COLORS} 
+      value={vm.color} 
+      onChange={vm.setColor} 
+    />
+    {vm.errors.color ? <Text style={styles.error}>{vm.errors.color}</Text> : null}
       <Text style={styles.label}>Category</Text>
       <ChipPicker 
       options={CATEGORIES} 
