@@ -50,7 +50,7 @@ export default function WardrobeScreen({ onAddItem, onOpenItem }: Props) {
         refreshing={vm.loading}
         onRefresh={reload}
         ListEmptyComponent={
-          vm.loading ? null : (
+          vm.loading ? undefined : (
             <Text style={styles.empty}>
               {vm.total === 0 ? 'Your wardrobe is empty. Add your first item!' : 'Nothing in this category yet.'}
             </Text>
