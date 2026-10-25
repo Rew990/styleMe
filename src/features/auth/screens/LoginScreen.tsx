@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import TextField from '../../../components/TextField';
 import AppButton from '../../../components/AppButton';
 import { colors, fontSizes } from '../../../components/theme';
@@ -12,7 +12,9 @@ export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
       <Text style={styles.title}>Welcome back</Text>
+      <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
       <TextField
         label="Email"
         value={vm.email}
@@ -43,4 +45,5 @@ const styles = StyleSheet.create({
   formError: { color: colors.error, marginBottom: 12 },
   link: { marginTop: 16, alignItems: 'center' },
   linkText: { color: colors.primary, fontSize: fontSizes.body },
+  logo: { width: 120, height: 120, alignSelf: 'center', marginBottom: 16, resizeMode: 'contain' },
 });

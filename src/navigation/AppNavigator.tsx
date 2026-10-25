@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlaceholderScreen from './PlaceholderScreen';
-import { Button } from 'react-native';
+import { Button, Image } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../features/auth/screens/LoginScreen';
 import SignUpScreen from '../features/auth/screens/SignUpScreen';
@@ -26,7 +26,12 @@ function PlannerTab() {
 // The 3 main tabs.
 function MainTabs({ onLogOut }: { onLogOut: () => void }) {
   return (
-    <Tab.Navigator screenOptions={{ headerRight: () => <Button title="Log out" onPress={onLogOut} /> }}>
+    <Tab.Navigator screenOptions={{ headerTitle: () => (
+      <Image source={require('../../assets/logo.png')} style={{ width: 36, height: 36, resizeMode: 'contain' }} />
+    ),
+    headerRight: () => <Button title="Log out" onPress={onLogOut} />,
+  }}
+>
       <Tab.Screen name="Wardrobe" component={WardrobeTab} />
       <Tab.Screen name="Outfits" component={OutfitsTab} />
       <Tab.Screen name="Planner" component={PlannerTab} />
