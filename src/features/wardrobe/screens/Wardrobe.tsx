@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, Text, View, } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AppButton from '../../../components/AppButton';
 import { colors, fontSizes } from '../../../components/theme';
@@ -7,6 +7,7 @@ import { ClothingItem } from '../../../models/ClothingItem';
 import ChipPicker from '../components/ChipPicker';
 import { CATEGORIES } from '../options';
 import { useWardrobeViewModel } from '../useWardrobeViewModel';
+import TextField from '@/components/TextField';
 
 type Props = { onAddItem: () => void; onOpenItem: (id: string) => void };
 
@@ -39,6 +40,7 @@ export default function WardrobeScreen({ onAddItem, onOpenItem }: Props) {
 
   return (
     <View style={styles.container}>
+        <TextField label="Search" placeholder="Search items..." value={vm.query} onChangeText={vm.setQuery} />
       <ChipPicker options={['All', ...CATEGORIES]} value={vm.category} onChange={vm.setCategory} />
       {vm.error ? <Text style={styles.error}>{vm.error}</Text> : null}
       <FlatList
@@ -52,7 +54,7 @@ export default function WardrobeScreen({ onAddItem, onOpenItem }: Props) {
         ListEmptyComponent={
           vm.loading ? undefined : (
             <Text style={styles.empty}>
-              {vm.total === 0 ? 'Your wardrobe is empty. Add your first item!' : 'Nothing in this category yet.'}
+              {vm.query.trim() ? 'No items match your search' :vm.total === 0 ? 'Your wardrobe is empty. Add your first item!' : 'Nothing in this category yet.'}
             </Text>
           )
         }
