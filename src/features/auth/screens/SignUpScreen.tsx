@@ -2,10 +2,9 @@ import {View, Text, Pressable, StyleSheet, Image, ImageBackground, KeyboardAvoid
 import {colors, gradients} from '@/components/theme';
 import {User} from '@/models/User';
 import { useSignUpViewModel } from '@/features/auth/useSignUpViewModel';
-import { useLoginViewModel } from '@/features/auth/useLoginViewModel';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
-import GlassField from '../GlassField';
+import GlassField from '@/features/auth/GlassField';
 
 type Props = {onSignedUp: (user: User) => void; onGoToLogin: () => void};
 export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
