@@ -26,7 +26,7 @@ export function useWardrobeViewModel() {
   return items.filter((item) => {
     const matchesCategory = category === 'All' || item.category === category;
     const matchesQuery = item.name.toLowerCase().includes(query.trim().toLowerCase());
-    const matchesSeason = season === 'All' || item.season === season;
+    const matchesSeason = season === 'All' || item.season === season || item.season === 'All';
     return matchesCategory && matchesQuery && matchesSeason;
   });
 }, [items, category, query, season]);
