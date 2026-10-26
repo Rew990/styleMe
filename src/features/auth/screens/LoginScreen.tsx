@@ -1,10 +1,10 @@
 import { View, Text, Pressable, StyleSheet, Image, ImageBackground, KeyboardAvoidingView, Platform } from 'react-native';
-import { colors } from '../../../components/theme';
-import { useLoginViewModel } from '../useLoginViewModel';
-import { User } from '../../../models/User';
+import { colors, gradients } from '@/components/theme';
+import { useLoginViewModel } from '@/features/auth/useLoginViewModel';
+import { User } from '@/models/User';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
-import GlassField from '../../auth/GlassField';
+import GlassField from '@/features/auth/GlassField';
 
 type Props = { onLoggedIn: (user: User) => void; onGoToSignUp: () => void };
 
@@ -39,7 +39,7 @@ export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
       
       <Pressable onPress={vm.submit} disabled={vm.loading} style={({pressed}) => [styles.buttonWrap, (pressed || vm.loading ) && {opacity: 0.8}]}>
 <LinearGradient
-              colors={[colors.primary, '#5B2BD6']}
+              colors={gradients.button}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={styles.button}
@@ -66,10 +66,11 @@ background: { flex: 1 },
   formError: { color: '#FFB4AB', textAlign: 'center', marginBottom: 12 },
   link: { marginTop: 16, alignItems: 'center' },
   linkText: { color: colors.primary, fontSize: 16 },
-  linkBold: { color: '#FFFFFF', fontWeight: '700' },
+  linkBold: { color: colors.primary, fontWeight: '700' },
   logo: { width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain' },
   subtitle: { fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24 },
   buttonWrap: { marginTop: 8, borderRadius: 14, overflow: 'hidden' },
   button: { height: 54, alignItems: 'center', justifyContent: 'center' },
+  buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
   blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
 });
