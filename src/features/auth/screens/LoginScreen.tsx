@@ -33,11 +33,11 @@ export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
         value={vm.password}
         onChangeText={vm.setPassword}
         error={vm.errors.password}
-        secureTextEntry
       />
+
       {vm.formError ? <Text style={styles.formError}>{vm.formError}</Text> : null}
       
-      <Pressable onPress={vm.submit} disabled={vm.loading} style={({pressed}) => [styles.buttonWrapp, (pressed || vm.loading ) && {opacity: 0.8}]}>
+      <Pressable onPress={vm.submit} disabled={vm.loading} style={({pressed}) => [styles.buttonWrap, (pressed || vm.loading ) && {opacity: 0.8}]}>
 <LinearGradient
               colors={[colors.primary, '#5B2BD6']}
               start={{ x: 0, y: 0 }}
@@ -50,22 +50,26 @@ export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
       
       
       <Pressable onPress={onGoToSignUp} style={styles.link}>
-        <Text style={styles.linkText}>No account? Sign up<Text style={styles.linkBold}>Sign up</Text>
-
-        </Text>
+        <Text style={styles.linkText}>No account? Sign up</Text>
       </Pressable>
     </BlurView>
     </KeyboardAvoidingView>
-    <ImageBackground/>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, justifyContent: 'center', backgroundColor: colors.background },
-  title: { fontSize: fontSizes.title, fontWeight: '700', color: colors.text, marginBottom: 24 },
-  formError: { color: colors.error, marginBottom: 12 },
+background: { flex: 1 },
+  center: { flex: 1, justifyContent: 'center', padding: 24 },
+  card: {padding: 24,borderRadius: 24,borderWidth: 1,borderColor: 'rgba(255,255,255,0.7)',backgroundColor: 'rgba(255,255,255,0.08)',overflow: 'hidden',},
+  title: { fontSize: 28, fontWeight: '700', color: colors.text, marginBottom: 24 },
+  formError: { color: '#FFB4AB', textAlign: 'center', marginBottom: 12 },
   link: { marginTop: 16, alignItems: 'center' },
-  linkText: { color: colors.primary, fontSize: fontSizes.body },
+  linkText: { color: colors.primary, fontSize: 16 },
+  linkBold: { color: '#FFFFFF', fontWeight: '700' },
   logo: { width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain' },
+  subtitle: { fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24 },
+  buttonWrap: { marginTop: 8, borderRadius: 14, overflow: 'hidden' },
+  button: { height: 54, alignItems: 'center', justifyContent: 'center' },
   blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
 });
