@@ -62,7 +62,7 @@ export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
 
 const styles = StyleSheet.create({
   background: {flex: 1},
-  center: {flex: 1, justifyContent: 'center'},
+  center: {flex: 1, justifyContent: 'center',paddingBottom: 24, paddingTop: 24, paddingHorizontal: 24},
   blur: {padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden'},
   logo: {width: 700, height: 190, alignSelf: 'center', marginBottom: 5, resizeMode: 'contain'},
   title: {fontSize: 24, fontFamily: 'PlayfairDisplay_700Bold', color: '#FFFFFF', textAlign: 'center', marginBottom: 4},
