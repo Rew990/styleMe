@@ -1,4 +1,3 @@
-validation.ts checks the plan form:
 import type { PlannedOutfit } from '@/models/PlannedOutfit';
 
 export type PlanErrors = { date?: string; outfit?: string; note?: string };
