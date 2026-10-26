@@ -8,6 +8,7 @@ import SignUpScreen from '../features/auth/screens/SignUpScreen';
 import { useSessionViewModel } from '../features/auth/useSessionViewModel';
 import WardrobeStack from '../features/wardrobe/WardrobeStack';
 import OutfitsStack from '@/features/outfits/OutfitsStack';
+import PlannerStack from "@/features/planner/PlannerStack";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,7 @@ function MainTabs({ onLogOut }: { onLogOut: () => void }) {
 >
       <Tab.Screen name="Wardrobe" component={WardrobeStack} options={{headerShown: false}} />
       <Tab.Screen name="Outfits" component={OutfitsStack} options={{ headerShown: false }} />
-      <Tab.Screen name="Planner" component={PlannerTab} />
+      <Tab.Screen name="Planner" component={PlannerStack} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }
