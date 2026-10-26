@@ -5,10 +5,12 @@ import { User } from '@/models/User';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
 import GlassField from '@/features/auth/GlassField';
+import { useFonts, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 
 type Props = { onLoggedIn: (user: User) => void; onGoToSignUp: () => void };
 
 export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
+  const [fontsLoaded] = useFonts({ PlayfairDisplay_700Bold });
   const vm = useLoginViewModel(onLoggedIn);
 
   return (
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
 background: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', padding: 24 },
   card: {padding: 24,borderRadius: 24,borderWidth: 1,borderColor: 'rgba(255,255,255,0.7)',backgroundColor: 'rgba(255,255,255,0.08)',overflow: 'hidden',},
-  title: { fontSize: 28, fontWeight: '700', color: colors.text, marginBottom: 24 },
+  title: { fontSize: 28, fontFamily: 'PlayfairDisplay_700Bold', color: '#FFFFFF', textAlign: 'center' },
   formError: { color: '#FFB4AB', textAlign: 'center', marginBottom: 12 },
   link: { marginTop: 16, alignItems: 'center' },
   linkText: { color: colors.primary, fontSize: 16 },
