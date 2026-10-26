@@ -19,7 +19,7 @@ export default function AddItemScreen({onSaved}: Props) {
      />
     <Text className="text-title font-bold text-text mb-6">Add Item</Text>
     <TextField label="Name" value={vm.name} onChangeText={vm.setName} error={vm.errors.name} />
-    <Text className="text-body font-semibold text-text mt-3 mb-1.5">Color</Text>
+    <Text className="text-body text-text mb-2">Color</Text>
     <ColorGrid 
       options={COLORS} 
       value={vm.color} 
