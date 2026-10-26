@@ -9,7 +9,7 @@ export function useWardrobeViewModel() {
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
   const [season, setSeason] = useState('ALL');
-
+  
   const reload = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -30,6 +30,7 @@ export function useWardrobeViewModel() {
     return matchesCategory && matchesQuery && matchesSeason;
   });
 }, [items, category, query, season]);
-
-  return { items: visible, total: items.length, category, setCategory, loading, error, reload, query, setQuery, season, setSeason  };
+const activeFilterCount = (category !== 'All' ? 1 : 0) + (season !== 'All' ? 1 : 0);
+    function clearFilters() {setCategory('All');setSeason('All');}
+  return { items: visible, total: items.length, category, setCategory, loading, error, reload, query, setQuery, season, setSeason, activeFilterCount, clearFilters };
 }
