@@ -7,6 +7,7 @@ import LoginScreen from '../features/auth/screens/LoginScreen';
 import SignUpScreen from '../features/auth/screens/SignUpScreen';
 import { useSessionViewModel } from '../features/auth/useSessionViewModel';
 import WardrobeStack from '../features/wardrobe/WardrobeStack';
+import OutfitsStack from '@/features/outfits/OutfitsStack';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,10 +15,6 @@ const Tab = createBottomTabNavigator();
 // Placeholders. Each teammate swaps theirs for a real screen.
 function WardrobeTab() {
   return <PlaceholderScreen title="Wardrobe" />;
-}
-
-function OutfitsTab() {
-  return <PlaceholderScreen title="Outfits" />;
 }
 
 function PlannerTab() {
@@ -34,7 +31,7 @@ function MainTabs({ onLogOut }: { onLogOut: () => void }) {
   }}
 >
       <Tab.Screen name="Wardrobe" component={WardrobeStack} options={{headerShown: false}} />
-      <Tab.Screen name="Outfits" component={OutfitsTab} />
+      <Tab.Screen name="Outfits" component={OutfitsStack} options={{ headerShown: false }} />
       <Tab.Screen name="Planner" component={PlannerTab} />
     </Tab.Navigator>
   );
