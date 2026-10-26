@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ComponentRef, forwardRef } from 'react';
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
 import { colors, fontSizes } from './theme';
 
@@ -6,7 +6,7 @@ import { colors, fontSizes } from './theme';
 // forwardRef lets a screen focus it, e.g. nameRef.current?.focus() (Lab 2 pattern).
 type Props = TextInputProps & { label: string; error?: string };
 
-const TextField = forwardRef<TextInput, Props>(function TextField({ label, error, style, ...rest }, ref) {
+const TextField = forwardRef<ComponentRef<typeof TextInput>, Props>(function TextField({ label, error, style, ...rest }, ref) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
