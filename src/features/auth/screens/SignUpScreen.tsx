@@ -2,10 +2,9 @@ import {View, Text, Pressable, StyleSheet, Image, ImageBackground, KeyboardAvoid
 import {colors, gradients} from '@/components/theme';
 import {User} from '@/models/User';
 import { useSignUpViewModel } from '@/features/auth/useSignUpViewModel';
-import { useLoginViewModel } from '@/features/auth/useLoginViewModel';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
-import GlassField from '../GlassField';
+import GlassField from '@/features/auth/GlassField';
 
 type Props = {onSignedUp: (user: User) => void; onGoToLogin: () => void};
 export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
@@ -14,7 +13,7 @@ export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
   return (
     <ImageBackground source={require('../../../../assets/login-bg.jpg')} style={styles.background}>
       <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : undefined} style={styles.center}>
-        <BlurView style={styles.blur} intensity={40}>
+        <BlurView style={styles.blur} intensity={20}>
           <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
           <Text style={styles.title}>Create an account</Text>
    <Text style={styles.subtitle}>Sign up to plan Today's Outfit</Text>
@@ -63,16 +62,16 @@ export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
 
 const styles = StyleSheet.create({
   background: {flex: 1},
-  center: {flex: 1, justifyContent: 'center'},
+  center: {flex: 1, justifyContent: 'center',paddingBottom: 24, paddingTop: 24, paddingHorizontal: 24},
   blur: {padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden'},
-  logo: {width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain'},
-  title: {fontSize: 24, fontWeight: '700', color: '#FFFFFF', marginBottom: 4},
+  logo: {width: 700, height: 190, alignSelf: 'center', marginBottom: 5, resizeMode: 'contain'},
+  title: {fontSize: 24, fontFamily: 'PlayfairDisplay_700Bold', color: '#FFFFFF', textAlign: 'center', marginBottom: 4},
   subtitle: {fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24},
   formError: {color: '#FFB4AB', textAlign: 'center', marginBottom: 12},
   buttonWrap: {marginTop: 8, borderRadius: 14, overflow: 'hidden'},
   button: {height: 54, alignItems: 'center', justifyContent: 'center'},
   buttonText: {color: '#FFFFFF', fontSize: 16, fontWeight: '700'},
-  link: {marginTop: 16, alignItems: 'center'},
-  linkText: {color: colors.primary, fontSize:15},
+  link: {marginTop: 10, alignItems: 'center'},
+  linkText: {color: colors.primaryDark, fontSize:15},
   linkBold: {color: colors.primary, fontWeight: '700'},
 });  

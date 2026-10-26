@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SavedOutfitsScreen from './screens/SavedOutfitsScreen';
 import SuggestionsScreen from './screens/SuggestionsScreen';
 import OutfitBuilderScreen from './screens/OutfitBuilderScreen';
+import HeaderLogo from '@/components/HeaderLogo';
 
 export type OutfitsStackParamList = {
   SavedOutfits: undefined;
@@ -13,7 +14,7 @@ const Stack = createNativeStackNavigator<OutfitsStackParamList>();
 
 export default function OutfitsStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerTitle: () => <HeaderLogo /> }}>
       <Stack.Screen name="SavedOutfits" options={{ title: 'My outfits' }}>
         {({ navigation }) => (
           <SavedOutfitsScreen

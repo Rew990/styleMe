@@ -5,16 +5,18 @@ import { User } from '@/models/User';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
 import GlassField from '@/features/auth/GlassField';
+import { useFonts, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 
 type Props = { onLoggedIn: (user: User) => void; onGoToSignUp: () => void };
 
 export default function LoginScreen({ onLoggedIn, onGoToSignUp }: Props) {
+  const [fontsLoaded] = useFonts({ PlayfairDisplay_700Bold });
   const vm = useLoginViewModel(onLoggedIn);
 
   return (
       <ImageBackground source={require('../../../../assets/login-bg.jpg')} style={styles.background}>
         <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : undefined} style={styles.center}>
-        <BlurView style={styles.blur} intensity={40}>
+        <BlurView style={styles.blur} intensity={20}>
           <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
           <Text style={styles.title}>Welcome back</Text>
           <Text style={styles.subtitle}>Log in to plan Today's Outfit</Text>
@@ -62,12 +64,12 @@ const styles = StyleSheet.create({
 background: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', padding: 24 },
   card: {padding: 24,borderRadius: 24,borderWidth: 1,borderColor: 'rgba(255,255,255,0.7)',backgroundColor: 'rgba(255,255,255,0.08)',overflow: 'hidden',},
-  title: { fontSize: 28, fontWeight: '700', color: colors.text, marginBottom: 24 },
+  title: { fontSize: 28, fontFamily: 'PlayfairDisplay_700Bold', color: '#FFFFFF', textAlign: 'center' },
   formError: { color: '#FFB4AB', textAlign: 'center', marginBottom: 12 },
-  link: { marginTop: 16, alignItems: 'center' },
-  linkText: { color: colors.primary, fontSize: 16 },
+  link: { marginTop: 10, alignItems: 'center' },
+  linkText: { color: colors.primaryDark, fontSize: 16 },
   linkBold: { color: colors.primary, fontWeight: '700' },
-  logo: { width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain' },
+  logo: { width: 700, height: 190, alignSelf: 'center', marginBottom: 5, resizeMode: 'contain' },
   subtitle: { fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24 },
   buttonWrap: { marginTop: 8, borderRadius: 14, overflow: 'hidden' },
   button: { height: 54, alignItems: 'center', justifyContent: 'center' },
