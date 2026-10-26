@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "styleMe",
+    
     "slug": "styleMe",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +24,8 @@
     },
     "plugins": [
       "expo-status-bar",
-      "expo-font"
+      "expo-font",
+      ["expo-calendar", { "calendarPermission": "StyleMe adds your planned outfits to your calendar." }]
     ]
   }
 }
