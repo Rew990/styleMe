@@ -13,7 +13,9 @@ export default function ColorGrid({ options, value, onChange }: Props) {
             <Pressable
             key={option.name}
             onPress={() => onChange(option.name)}
-            className={`p-[3px] m-1 rounded-3xl border-2 ${selected ? 'border-primary' : 'border-transparent'}`}accessibilityLabel={option.name}>
+            accessibilityLabel={option.name}
+            accessibilityState={{ selected }}
+            className={`p-[3px] m-1 rounded-3xl border-2 ${selected ? 'border-primary' : 'border-transparent'}`}>
                 <View
                 className="w-[34px] h-[34px] rounded-full border border-[#CCCCCC]"
                 style={{ backgroundColor: option.hex }}
@@ -22,7 +24,8 @@ export default function ColorGrid({ options, value, onChange }: Props) {
           );
         })}
       </View>
-      <Text className="text-text mt-1 mb-2">Selected: {value}</Text>    </View>
+      <Text className="text-text mt-1 mb-2">Selected: {value}</Text>
+      </View>
   );
 }
 

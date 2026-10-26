@@ -1,7 +1,7 @@
 import { Text, Image, ScrollView} from 'react-native';
-import TextField from '../../../components/TextField';
-import AppButton from '../../../components/AppButton';
-import { ClothingItem } from '../../../models/ClothingItem';
+import TextField from '@/components/TextField';
+import AppButton from '@/components/AppButton';
+import { ClothingItem } from '@/models/ClothingItem';
 import { useAddItemViewModel } from '../useAddItemViewModel';
 import ChipPicker from '../components/ChipPicker';
 import { CATEGORIES, SEASONS, OCCASIONS, COLORS } from '../options';
@@ -25,20 +25,20 @@ export default function AddItemScreen({onSaved}: Props) {
       value={vm.color} 
       onChange={vm.setColor} 
     />
-    {vm.errors.color ? <Text className="text-danger mb-2">{vm.errors.color}</Text> : null}
+    {!! vm.errors.color && <Text className="text-danger mb-2">{vm.errors.color}</Text>}
       <Text className="text-body font-semibold text-text mt-3 mb-1.5">Category</Text>
       <ChipPicker 
       options={CATEGORIES} 
       value={vm.category} 
       onChange={vm.setCategory} 
       />
-      {vm.errors.category ? <Text className="text-danger mb-2">{vm.errors.category}</Text> : null}
+      {!! vm.errors.category && <Text className="text-danger mb-2">{vm.errors.category}</Text>}
       <Text className="text-body font-semibold text-text mt-3 mb-1.5">Season</Text>
       <ChipPicker options={SEASONS} value={vm.season} onChange={vm.setSeason} />
       <Text className="text-body font-semibold text-text mt-3 mb-1.5">Occasion</Text>
       <ChipPicker options={OCCASIONS} value={vm.occasion} onChange={vm.setOccasion} />
       
-      {vm.formError ? <Text className="text-danger mb-3">{vm.formError}</Text> : null}
+      {!! vm.formError && <Text className="text-danger mb-3">{vm.formError}</Text>}
       <AppButton title={vm.saving ? 'Saving…' : 'Save Item'} onPress={vm.save} disabled={vm.saving} />
     </ScrollView>
   );
