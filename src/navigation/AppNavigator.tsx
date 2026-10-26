@@ -47,12 +47,12 @@ export default function AppNavigator() {
             <MainTabs onLogOut={session.signOut} />
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="Login" options={{ title: 'Login' }}>
+            <Stack.Screen name="Login" options={{ headerShown: false }}>
               {({ navigation }) => (
                 <LoginScreen onLoggedIn={session.setUser} onGoToSignUp={() => navigation.navigate('SignUp')} />
               )}
             </Stack.Screen>
-            <Stack.Screen name="SignUp" options={{ title: 'Sign Up' }}>
+            <Stack.Screen name="SignUp" options={{ headerShown: false }}>
               {({ navigation }) => (
                 <SignUpScreen onSignedUp={session.setUser} onGoToLogin={() => navigation.navigate('Login')} />
               )}
