@@ -2,13 +2,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WardrobeScreen from './screens/Wardrobe';
 import AddItemScreen from './screens/AddItemScreen';
 import ItemDetailsScreen from './screens/ItemDetailsScreen';
+import HeaderLogo from '@/components/HeaderLogo';
 
 const Stack = createNativeStackNavigator();
 
 // The Wardrobe tab: the list, with Add item and Item details opening on top.
 export default function WardrobeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerTitle: () => <HeaderLogo/>}}>
       <Stack.Screen name="WardrobeList" options={{ title: 'My wardrobe' }}>
         {({ navigation }) => (
           <WardrobeScreen
