@@ -1,55 +1,78 @@
-import {View, Text, Pressable, StyleSheet, Image} from 'react-native';
-import TextField from '../../../components/TextField';
-import AppButton from '../../../components/AppButton';
-import {colors, fontSizes} from '../../../components/theme';
-import {User} from '../../../models/User';
-import { useSignUpViewModel } from '../useSignUpViewModel';
+import {View, Text, Pressable, StyleSheet, Image, ImageBackground, KeyboardAvoidingView, Platform} from 'react-native';
+import {colors, gradients} from '@/components/theme';
+import {User} from '@/models/User';
+import { useSignUpViewModel } from '@/features/auth/useSignUpViewModel';
+import { useLoginViewModel } from '@/features/auth/useLoginViewModel';
+import { BlurView } from 'expo-blur';
+import {LinearGradient} from 'expo-linear-gradient';
+import GlassField from '../GlassField';
 
 type Props = {onSignedUp: (user: User) => void; onGoToLogin: () => void};
 export default function SignUpScreen({onSignedUp, onGoToLogin}: Props) {
   const vm = useSignUpViewModel(onSignedUp);
 
   return (
-    <View style={styles.container}>
-      <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
-      <Text style={styles.title}>Create an account</Text>
-      <TextField label="Name" value={vm.name} onChangeText={vm.setName} error={vm.errors.name} />
-      <TextField
-        label="Email"
+    <ImageBackground source={require('../../../../assets/login-bg.jpg')} style={styles.background}>
+      <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : undefined} style={styles.center}>
+        <BlurView style={styles.blur} intensity={40}>
+          <Image source={require('../../../../assets/logo.png')} style={styles.logo} />
+          <Text style={styles.title}>Create an account</Text>
+   <Text style={styles.subtitle}>Sign up to plan Today's Outfit</Text>
+      <GlassField
+        placeholder="Email"
+        icon='mail-outline'
         value={vm.email}
         onChangeText={vm.setEmail}
         error={vm.errors.email}
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <TextField
-        label="Password"
+      <GlassField
+        placeholder="Password"
+        isPassword
         value={vm.password}
         onChangeText={vm.setPassword}
         error={vm.errors.password}
-        secureTextEntry
       />
-      <TextField
-        label="Confirm password"
+      <GlassField
+        placeholder="Confirm password"
         value={vm.confirm}
         onChangeText={vm.setConfirm}
         error={vm.errors.confirm}
-        secureTextEntry
       />
       {vm.formError ? <Text style={styles.formError}>{vm.formError}</Text> : null}
-      <AppButton title={vm.loading ? 'Signing up…' : 'Sign up'} onPress={vm.submit} disabled={vm.loading} />
+      
+      <Pressable onPress={vm.submit} disabled={vm.loading} style={({pressed}) => [styles.buttonWrap, (pressed || vm.loading ) && {opacity: 0.8}]}>
+        <LinearGradient
+          colors={gradients.button}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.button}
+        >      
+          <Text style={styles.buttonText}>{vm.loading ? 'Signing up…' : 'Sign up'}</Text>
+        </LinearGradient>
+      </Pressable>
       <Pressable onPress={onGoToLogin} style={styles.link}>
         <Text style={styles.linkText}>Already have an account? Log in</Text>
       </Pressable>
-    </View>
+    </BlurView>
+    </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: 24, justifyContent: 'center', backgroundColor: colors.background},
-  title: {fontSize: fontSizes.title, fontWeight: '700', color: colors.text, marginBottom: 24},
-  formError: {color: colors.error, marginBottom: 12},
+  background: {flex: 1},
+  center: {flex: 1, justifyContent: 'center'},
+  blur: {padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden'},
+  logo: {width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain'},
+  title: {fontSize: 24, fontWeight: '700', color: '#FFFFFF', marginBottom: 4},
+  subtitle: {fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24},
+  formError: {color: '#FFB4AB', textAlign: 'center', marginBottom: 12},
+  buttonWrap: {marginTop: 8, borderRadius: 14, overflow: 'hidden'},
+  button: {height: 54, alignItems: 'center', justifyContent: 'center'},
+  buttonText: {color: '#FFFFFF', fontSize: 16, fontWeight: '700'},
   link: {marginTop: 16, alignItems: 'center'},
-  linkText: {color: colors.primary, fontSize: fontSizes.body},
-  logo: {width: 700, height: 199, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain'},
+  linkText: {color: colors.primary, fontSize:15},
+  linkBold: {color: colors.primary, fontWeight: '700'},
 });  
