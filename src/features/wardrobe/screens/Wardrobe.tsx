@@ -5,7 +5,7 @@ import AppButton from '../../../components/AppButton';
 import { colors, fontSizes } from '../../../components/theme';
 import { ClothingItem } from '../../../models/ClothingItem';
 import ChipPicker from '../components/ChipPicker';
-import { CATEGORIES } from '../options';
+import { CATEGORIES, SEASONS } from '../options';
 import { useWardrobeViewModel } from '../useWardrobeViewModel';
 import TextField from '@/components/TextField';
 
@@ -42,6 +42,8 @@ export default function WardrobeScreen({ onAddItem, onOpenItem }: Props) {
     <View style={styles.container}>
         <TextField label="Search" placeholder="Search items..." value={vm.query} onChangeText={vm.setQuery} />
       <ChipPicker options={['All', ...CATEGORIES]} value={vm.category} onChange={vm.setCategory} />
+      <ChipPicker options={['All', ...SEASONS.filter((s) => s !== 'All')]} value={vm.season} onChange={vm.setSeason} />
+
       {vm.error ? <Text style={styles.error}>{vm.error}</Text> : null}
       <FlatList
         data={vm.items}
@@ -54,7 +56,7 @@ export default function WardrobeScreen({ onAddItem, onOpenItem }: Props) {
         ListEmptyComponent={
           vm.loading ? undefined : (
             <Text style={styles.empty}>
-              {vm.query.trim() ? 'No items match your search' :vm.total === 0 ? 'Your wardrobe is empty. Add your first item!' : 'Nothing in this category yet.'}
+              {vm.query.trim() ? 'No items match your search' :vm.total === 0 ? 'Your wardrobe is empty. Add your first item!' : 'No items match these filters.'}
             </Text>
           )
         }

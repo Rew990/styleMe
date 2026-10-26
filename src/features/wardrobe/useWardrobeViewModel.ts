@@ -8,6 +8,8 @@ export function useWardrobeViewModel() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
+  const [season, setSeason] = useState('ALL');
+
   const reload = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -21,12 +23,13 @@ export function useWardrobeViewModel() {
   }, []);
 
   const visible = useMemo(() => {
-    return items.filter((item) => {
-        const matchesCategory = category === 'All' || item.category === category;
-        const matchesQuery = item.name.toLowerCase().includes(query.trim().toLowerCase());
-        return matchesCategory && matchesQuery;
-    });
-  }, [items, category, query]);
+  return items.filter((item) => {
+    const matchesCategory = category === 'All' || item.category === category;
+    const matchesQuery = item.name.toLowerCase().includes(query.trim().toLowerCase());
+    const matchesSeason = season === 'All' || item.season === season;
+    return matchesCategory && matchesQuery && matchesSeason;
+  });
+}, [items, category, query, season]);
 
-  return { items: visible, total: items.length, category, setCategory, loading, error, reload, query, setQuery };
+  return { items: visible, total: items.length, category, setCategory, loading, error, reload, query, setQuery, season, setSeason  };
 }
