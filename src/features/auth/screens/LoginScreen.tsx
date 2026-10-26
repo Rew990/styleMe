@@ -4,7 +4,7 @@ import { useLoginViewModel } from '../useLoginViewModel';
 import { User } from '../../../models/User';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
-import GlassField from '../../auth/GlassField';
+import GlassField from '../components/GlassField';
 
 type Props = { onLoggedIn: (user: User) => void; onGoToSignUp: () => void };
 
@@ -70,6 +70,8 @@ background: { flex: 1 },
   logo: { width: 700, height: 270, alignSelf: 'center', marginBottom: 10, resizeMode: 'contain' },
   subtitle: { fontSize: 15, color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginTop: 4, marginBottom: 24 },
   buttonWrap: { marginTop: 8, borderRadius: 14, overflow: 'hidden' },
+  buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
   button: { height: 54, alignItems: 'center', justifyContent: 'center' },
-  blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
+  
+    blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
 });
