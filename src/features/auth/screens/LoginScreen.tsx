@@ -76,7 +76,6 @@ background: { flex: 1 },
   button: { height: 54, alignItems: 'center', justifyContent: 'center' },
   
     blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
-});
   buttonText: { color: '#FFFFFF', fontSize: 16, fontWeight: '700' },
   blur: { padding: 24, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.7)', backgroundColor: 'rgba(255,255,255,0.08)', overflow: 'hidden',},
 });
