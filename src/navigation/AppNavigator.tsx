@@ -2,6 +2,8 @@ import { NavigationContainer, type NavigatorScreenParams } from '@react-navigati
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PlaceholderScreen from './PlaceholderScreen';
 import { Button, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { colors } from '@/components/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../features/auth/screens/LoginScreen';
 import SignUpScreen from '../features/auth/screens/SignUpScreen';
@@ -33,17 +35,31 @@ function PlannerTab() {
   return <PlaceholderScreen title="Planner" />;
 }
 
+// One icon per tab (outline = not selected, filled = selected). Names: https://icons.expo.fyi
+const TAB_ICONS: Record<keyof MainTabParamList, [keyof typeof Ionicons.glyphMap, keyof typeof Ionicons.glyphMap]> = {
+  Home: ['home-outline', 'home'],
+  Wardrobe: ['shirt-outline', 'shirt'],
+  Outfits: ['sparkles-outline', 'sparkles'],
+  Planner: ['calendar-outline', 'calendar'],
+  Profile: ['person-circle-outline', 'person-circle'],
+};
+
 // The main tabs. Home is first and opens after login.
 function MainTabs({ onLogOut, userName }: { onLogOut: () => void; userName?: string }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerTitle: () => (
           <Image source={require('../../assets/logo.png')} style={{ width: 36, height: 36, resizeMode: 'contain' }} />
         ),
-        headerRight: () => <Button title="Log out" onPress={onLogOut} />,
-      }}
+        headerRight: () => <Button title="Log out" color={colors.primaryDark} onPress={onLogOut} />,
+        tabBarIcon: ({ color, size, focused }) => (
+          <Ionicons name={TAB_ICONS[route.name][focused ? 1 : 0]} size={size} color={color} />
+        ),
+        tabBarActiveTintColor: colors.primaryDark,
+        tabBarInactiveTintColor: colors.sage,
+      })}
     >
       <Tab.Screen name="Home">
         {({ navigation }) => (
