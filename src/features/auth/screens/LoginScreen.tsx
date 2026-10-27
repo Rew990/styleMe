@@ -4,7 +4,6 @@ import { useLoginViewModel } from '@/features/auth/useLoginViewModel';
 import { User } from '@/models/User';
 import { BlurView } from 'expo-blur';
 import {LinearGradient} from 'expo-linear-gradient';
-import GlassField from '../components/GlassField';
 import GlassField from '@/features/auth/GlassField';
 import { useFonts, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 
