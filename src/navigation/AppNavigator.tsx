@@ -35,7 +35,8 @@ function MainTabs({ onLogOut }: { onLogOut: () => void }) {
       <Tab.Screen name="Wardrobe" component={WardrobeStack} options={{headerShown: false}} />
       <Tab.Screen name="Outfits" component={OutfitsStack} options={{ headerShown: false }} />
 <Tab.Screen name="Planner" component={PlannerStack} options={{ headerShown: false }} />
-      <Tab.Screen name="Profile" component={ProfileSettingsScreen} />    </Tab.Navigator>
+      <Tab.Screen name="Profile" component={ProfileSettingsScreen} />
+    </Tab.Navigator>
   );
 }
 
