@@ -2,13 +2,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WardrobeScreen from './screens/Wardrobe';
 import AddItemScreen from './screens/AddItemScreen';
 import ItemDetailsScreen from './screens/ItemDetailsScreen';
+import HeaderLogo from '@/components/HeaderLogo';
 
-const Stack = createNativeStackNavigator();
+export type WardrobeStackParamList = {
+  WardrobeList: undefined;
+  AddItem: undefined;
+  ItemDetails: { id: string };
+};
 
+const Stack = createNativeStackNavigator<WardrobeStackParamList>();
 // The Wardrobe tab: the list, with Add item and Item details opening on top.
 export default function WardrobeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerTitle: () => <HeaderLogo/>}}>
       <Stack.Screen name="WardrobeList" options={{ title: 'My wardrobe' }}>
         {({ navigation }) => (
           <WardrobeScreen
@@ -23,7 +29,7 @@ export default function WardrobeStack() {
       <Stack.Screen name="ItemDetails" options={{ title: 'Item details' }}>
         {({ navigation, route }) => (
           <ItemDetailsScreen
-            id={(route.params as { id: string }).id}
+            id={route.params.id}
             onDeleted={() => navigation.goBack()}
           />
         )}
